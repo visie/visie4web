@@ -10,7 +10,7 @@ from py4web.utils.factories import ActionFactory
 from py4web.utils.mailer import Mailer
 from py4web.utils.form import FormStyleBulma
 
-from yatl import A, CAT
+from yatl import A, DIV, CAT
 
 from . import settings
 
@@ -172,18 +172,38 @@ authenticated = ActionFactory(db, session, T, flash, auth.user)
 class Menu:
     def __init__(self):
         self.menu_items = {}
+
     def set(self, name, item):
         self.menu_items[name] = item
+
     def render(self, user_id):
         u_groups = groups.get(user_id)
         return CAT(*[self.build_item(item, u_groups) for item in sorted(self.menu_items.values())])
+
     def build_item(self, item, u_groups):
         if item[3] and item[3] not in u_groups:
             return ''
-        if item[4]:
-            pass
+        if len(item) > 4 and item[4]:
+            return DIV(
+                self.link(item, _class="navbar-link"),
+                DIV(
+                    *[
+                        self.build_item(subitem, u_groups)
+                        for subitem in sorted(item[4])
+                    ],
+                    _class="navbar-dropdown",
+                ),
+                _class="navbar-item has-dropdown is-hoverable",
+            )
         else:
-            return A(item[1], _href=URL(*item[2], use_appname=False), _class="navbar-item")
+            return self.link(item)
+
+    def link(self, item, _class="navbar-item"):
+        return A(
+            item[1],
+            _href=URL(*item[2], use_appname=False),
+            _class=_class
+        )
 
 
 menu = Menu()

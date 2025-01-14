@@ -7,7 +7,10 @@ from ..common import (T, db, flash, requires_membership, menu)
 
 
 TABLES = db.tables
-menu.set(APP_NAME, [1000, 'Super Admin', (APP_NAME, 'index'), 'superadmin', []])
+menu.set(APP_NAME, [1000, 'Super Admin', (APP_NAME, 'index'), 'superadmin', [
+    [0, table, (APP_NAME, 'table', table), 'superadmin']
+    for table in TABLES
+    ]])
 
 
 @action(f"{APP_NAME}/index")
