@@ -1,0 +1,18 @@
+[[extend '../../templates/layout.html']]
+
+[[block title]]
+  [[=T('Superadmin Tables')]]
+[[end]]
+
+<div class="section">
+  <div class="container">
+    <p class="menu-label">[[=T('Tables')]]</p>
+    <aside class="menu">
+        <ul class="menu-list">
+            [[for table in tables:]]
+            <li><a href="[[=URL(app_name,'table',table)]]">[[=T(table.replace('_',' ').title())]]</a></li>
+            [[pass]]
+        </ul>
+    </aside>
+  </div>
+</div>

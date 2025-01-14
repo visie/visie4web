@@ -1,0 +1,16 @@
+[[extend '../../templates/layout.html']]
+
+[[block title]]
+  [[=table.replace('_',' ').title()]] - [[=T('Superadmin')]]
+[[end]]
+
+<div class="section">
+  <div class="container">
+    <h1 class="title">[[=table.replace('_',' ').title()]]</h1>
+    <hr />
+    [[=grid]]
+    <hr />
+    <a href="[[=URL(app_name,'index')]]" class="button">[[=T('Back')]]</a>
+  </div>
+</div>
+
