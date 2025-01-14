@@ -23,11 +23,8 @@ py4web set_password
 
 ```
 py4web shell apps
-from apps._default.common import auth, db, groups
-auth.register({'first_name':'Manoel', 'last_name':'Silva', 'email': 'msilva@visie.com.br', 'password':'123senha!Z'})
-db(db.auth_user.id==1).update(action_token='')
-groups.add(1, 'superadmin')
-db.commit()
+from apps._default.scripts.createuser import createuser
+createuser()
 ````
 
 5. Execute o sistema
