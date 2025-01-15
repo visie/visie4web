@@ -27,6 +27,12 @@ from apps._default.scripts.createuser import createuser
 createuser()
 ````
 
+5. Se desejar ter o _dashboard (recomendado) ou outra aplicação padrão do py4web, execute:
+
+```
+py4web setup apps
+```
+
 5. Execute o sistema
 
 ```
