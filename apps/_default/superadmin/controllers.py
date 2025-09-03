@@ -20,13 +20,11 @@ def index():
 
 
 @action(f"{APP_NAME}/table/<table>")
-@action(f"{APP_NAME}/table/<table>/<path:path>")
 @action.uses(f"{TEMPLATE_FOLDER}table.html", requires_membership('superadmin'), T, flash)
-def table(table, path=None):
+def table(table):
     if table not in TABLES:
         abort(404)
     grid = Grid(
-        path,
         query=(db[table].id>0),
         formstyle=FormStyleBulma,
         grid_class_style=GridClassStyleBulma,
