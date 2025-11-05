@@ -1,0 +1,5 @@
+listcode = "find . -path './.venv' -prune -o -name '*.py' -print -o -name '*.css' -print -o -name '*.html' -print -o -name '*.json' -print -o -name '*.txt' -print -o -name '*.csv' -print"
+run = "py4web run apps"
+doc = "ls *.md"
+tests = "python -m pytest"
+entrypoint = "http://127.0.0.1:8000/"
