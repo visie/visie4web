@@ -17,8 +17,10 @@ from .tasks import scheduler
 modules = glob.glob(__file__.replace('__init__.py', '*/controllers.py'))
 for module in modules:
     app = os.path.split(os.path.split(module)[0])[1]
-    if app != 'scaffold':
+    if app not in ('scaffold', 'superadmin'):
         importlib.import_module(f".{app}", __name__)
+
+from . import superadmin
 
 # optional parameters
 __version__ = "0.0.0"
